@@ -19,9 +19,11 @@ export class AssetsController {
   constructor(private readonly assetsService: AssetsService) {}
 
   @Post()
-  @UsePipes(new ValidationPipe({
-    transform: true
-  }))
+  @UsePipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  )
   async create(@Body() createAssetDto: CreateAssetDto) {
     try {
       const createdAsset = await this.assetsService.create(createAssetDto);
@@ -68,14 +70,15 @@ export class AssetsController {
     }
   }
 
- 
   @Put(':id')
-  @UsePipes(new ValidationPipe({
-    whitelist: true, 
-    forbidNonWhitelisted: false, 
-    transform: true, 
-    skipMissingProperties: false,
-  }))
+  @UsePipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: false,
+      transform: true,
+      skipMissingProperties: false,
+    }),
+  )
   async update(@Param('id') id: number, @Body() updateAssetDto: UpdateAssetDto) {
     try {
       const updatedAsset = await this.assetsService.update(id, updateAssetDto);

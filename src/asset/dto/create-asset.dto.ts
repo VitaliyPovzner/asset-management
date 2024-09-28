@@ -15,6 +15,6 @@ export class CreateAssetDto {
 
   @IsOptional()
   @IsDate()
-  @Type(() => Date) 
+  @Type(() => Date)
   lastInternetAccess?: Date;
 }

@@ -3,19 +3,19 @@ import { Type } from 'class-transformer';
 
 export class UpdateAssetDto {
   @IsMACAddress()
-  @IsOptional() 
+  @IsOptional()
   mac?: string;
 
   @IsIP()
-  @IsOptional() 
+  @IsOptional()
   ip?: string;
 
   @IsString()
-  @IsOptional() 
+  @IsOptional()
   name?: string;
 
-  @IsOptional() 
+  @IsOptional()
   @IsDate()
-  @Type(() => Date) 
+  @Type(() => Date)
   lastInternetAccess?: Date;
 }

@@ -5,7 +5,6 @@ import { Repository, FindManyOptions, MoreThan } from 'typeorm';
 import { Asset } from './entities/asset.entity';
 import { S3Service } from '../s3/s3.service';
 
-
 @Injectable()
 export class AssetsService {
   private readonly bucketName = 'asset-managment';
@@ -25,17 +24,15 @@ export class AssetsService {
     const assets = await this.assetsRepository.find();
     const fileName = `findAll_${new Date().toISOString()}.json`;
     this.s3Service
-    .writeDataToS3(assets, fileName, this.bucketName)
-    .then(() => {
-      console.log('Successfully saved to s3');
-    })
-    .catch((error) => {
-      console.log(`Failed to save to s3`, error);
-    });
-    return assets
+      .writeDataToS3(assets, fileName, this.bucketName)
+      .then(() => {
+        console.log('Successfully saved to s3');
+      })
+      .catch((error) => {
+        console.log(`Failed to save to s3`, error);
+      });
+    return assets;
   }
-
-  
 
   async findByFilters(filterAssetDto: FilterAssetDto): Promise<Asset[]> {
     const options: FindManyOptions<Asset> = {
@@ -82,6 +79,4 @@ export class AssetsService {
       throw new NotFoundException(`Asset with id ${id} not found`);
     }
   }
-
-
 }

@@ -1,4 +1,3 @@
-
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseConfigModule } from './database/database.config';
@@ -10,9 +9,9 @@ import { AssetsModule } from './asset/assets.module';
   imports: [
     ConfigModule.forRoot({
       envFilePath: path.resolve(__dirname, '../.env'),
-      isGlobal: true, 
+      isGlobal: true,
     }),
-    DatabaseConfigModule, 
+    DatabaseConfigModule,
     DatabaseModule,
     AssetsModule,
   ],
